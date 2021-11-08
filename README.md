@@ -3,6 +3,7 @@ This app made by me. I create Javascript and HTML/CSS
 It is also developed using cordova you can use these commands to make use:
 
    + npm install -g cordova (install cordova if you have cordova skip this step)
+   + cordova create RentalZ (create a cordova folder)
    + cordova platform rm/add ios/android (to remove or add platform android and ios)
    + cordova platform rm/add browser (to remove or add platform Browser)
    + cordova emulate android/ios/browser (to run platform you want)
