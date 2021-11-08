@@ -391,6 +391,7 @@ $(document).on('change', '#page-create #frm-register #district', function () {
 function importCity(form, selectedName = ``) { //Function use to get data from the data City
     db.transaction(function (tx) {
         var query = `SELECT * FROM City ORDER BY Name`;
+        
         //alert("City: " + query);
 
         tx.executeSql(query, [], transactionSuccess, transactionError);
@@ -409,7 +410,7 @@ function importCity(form, selectedName = ``) { //Function use to get data from t
     });
 }
 
-function importDistrict(form, selectedName = ``,selectedCity = ''){ //Function use to get data from the data District
+function importDistrict(form, selectedName = ``,selectedCity = ``){ //Function use to get data from the data District
     var id = $(`${form} #city`).val();
 
     db.transaction(function (tx) {
