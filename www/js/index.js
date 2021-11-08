@@ -388,9 +388,11 @@ $(document).on('change', '#page-create #frm-register #district', function () {
 });
 
 
-function importCity(form, selectedId = ``) { //Function use to get data from the data City
+function importCity(form, selectedName = ``) { //Function use to get data from the data City
     db.transaction(function (tx) {
         var query = `SELECT * FROM City ORDER BY Name`;
+        //alert("City: " + query);
+
         tx.executeSql(query, [], transactionSuccess, transactionError);
 
         function transactionSuccess(tx, result) {
@@ -398,7 +400,7 @@ function importCity(form, selectedId = ``) { //Function use to get data from the
 
             for (let item of result.rows) { //Conditions to get the value of City's data
                 optionList += `
-                <option value='${item.Id}' ${selectedId == item.Id ? 'selected' : ''}> ${item.Name}</option>`;
+                <option value='${item.Id}' ${selectedName == item.Name ? 'selected' : ''}>${item.Name}</option>`;
 
             }
             $(`${form} #city`).html(optionList);
@@ -407,19 +409,28 @@ function importCity(form, selectedId = ``) { //Function use to get data from the
     });
 }
 
-function importDistrict(form, selectedId = ``) { //Function use to get data from the data District
+function importDistrict(form, selectedName = ``,selectedCity = ''){ //Function use to get data from the data District
     var id = $(`${form} #city`).val();
 
     db.transaction(function (tx) {
-        var query = `SELECT * FROM District WHERE CityId = ? ORDER BY Name`;
-        tx.executeSql(query, [id], transactionSuccess, transactionError);
+        var query = '';
+        if(selectedCity) {
+            query = `SELECT District.* FROM District LEFT JOIN City  ON CityId = City.Id WHERE City.Name = "${selectedCity}" ORDER BY District.Name`;
+        }
+        else {
+            query = `SELECT * FROM District WHERE CityId = ${id} ORDER BY Name`;
+        }
+
+        //alert("District: " + query);
+
+        tx.executeSql(query, [], transactionSuccess, transactionError);
 
         function transactionSuccess(tx, result) {
             var optionList = `<option value=''>Select District</option>`;
 
             for (let item of result.rows) { //Conditions to get the value of District's data
                 optionList += `
-                <option value='${item.Id}' ${selectedId == item.Id ? 'selected' : ''}> ${item.Name}</option>`;
+                <option value='${item.Id}' ${selectedName == item.Name ? 'selected' : ''}>${item.Name}</option>`;
 
             }
             $(`${form} #district`).html(optionList);
@@ -428,19 +439,28 @@ function importDistrict(form, selectedId = ``) { //Function use to get data from
     });
 }
 
-function importWard(form, selectedId = ``) { //Function use to get data from the data Ward
+function importWard(form, selectedName = ``,selectedDistrict= ``) { //Function use to get data from the data Ward
     var id = $(`${form} #district`).val();
 
     db.transaction(function (tx) {
-        var query = `SELECT * FROM Ward WHERE DistrictId = ? ORDER BY Name`;
-        tx.executeSql(query, [id], transactionSuccess, transactionError);
+        var query = '';
+        if(selectedDistrict) {
+            query = `SELECT Ward.* FROM Ward LEFT JOIN District ON DistrictId = District.Id WHERE District.Name = "${selectedDistrict}" ORDER BY Ward.Name`;
+        }
+        else {
+            query = `SELECT * FROM Ward WHERE DistrictId = ${id} ORDER BY Name`;
+        }
+
+        //alert("Ward: " + query);
+
+        tx.executeSql(query, [], transactionSuccess, transactionError);
 
         function transactionSuccess(tx, result) {
             var optionList = `<option value=''>Select Ward</option>`;
 
             for (let item of result.rows) { //Conditions to get the value of Ward's data
                 optionList += `
-                <option value='${item.Id}' ${selectedId == item.Id ? 'selected' : ''}> ${item.Name}</option>`;
+                <option value='${item.Id}' ${selectedName == item.Name ? 'selected' : ''}>${item.Name}</option>`;
 
             }
             $(`${form} #ward`).html(optionList);
@@ -454,7 +474,7 @@ $(document).on('pagebeforeshow', '#page-create', function () {
     importType('#page-create #frm-register');
 });
 
-function importType(form, selectedId = -1) { //Function use to get data from the data Type
+function importType(form, selectedName = ``) { //Function use to get data from the data Type
     db.transaction(function (tx) {
         var query = `SELECT * FROM Type ORDER BY Name`;
         tx.executeSql(query, [], transactionSuccess, transactionError);
@@ -464,7 +484,7 @@ function importType(form, selectedId = -1) { //Function use to get data from the
 
             for (let item of result.rows) { //Conditions to get the value of Type's data
                 optionList += `
-                <option value='${item.Id}' ${selectedId == item.Id ? 'selected' : ''}> ${item.Name}</option>`;
+                <option value='${item.Id}' ${selectedName == item.Name ? 'selected' : ''}>${item.Name}</option>`;
 
             }
             $(`${form} #type`).html(optionList);
@@ -478,7 +498,7 @@ $(document).on('pagebeforeshow', '#page-create', function () {
     importFurniture('#page-create #frm-register');
 });
 
-function importFurniture(form, selectedId = ``) { //Function use to get data from the data Furniture
+function importFurniture(form, selectedName = ``) { //Function use to get data from the data Furniture
     db.transaction(function (tx) {
         var query = `SELECT * FROM Furniture ORDER BY Name`;
         tx.executeSql(query, [], transactionSuccess, transactionError);
@@ -488,7 +508,7 @@ function importFurniture(form, selectedId = ``) { //Function use to get data fro
 
             for (let item of result.rows) { //Conditions to get the value of Furniture's data
                 optionList += `
-                <option value='${item.Id}' ${selectedId == item.Id ? 'selected' : ''}> ${item.Name}</option>`;
+                <option value='${item.Id}' ${selectedName == item.Name ? 'selected' : ''}>${item.Name}</option>`;
 
             }
             $(`${form} #furniture`).html(optionList);
@@ -539,9 +559,9 @@ function showUpdate() {
                 $(`#page-detail #frm-update #bedroom`).val(result.rows[0].Bedroom);
                 $('#page-detail #frm-update #reporter').val(result.rows[0].Reporter);
 
-                importCity('#page-detail #frm-update #city', result.rows[0].City);
-                importDistrict('#page-detail #frm-update #district', result.rows[0].District, result.rows[0].City);
-                importWard('#page-detail #frm-update #ward', result.rows[0].Ward, result.rows[0].District);
+                importCity('#page-detail #frm-update', result.rows[0].City);
+                importDistrict('#page-detail #frm-update', result.rows[0].District, result.rows[0].City);
+                importWard('#page-detail #frm-update', result.rows[0].Ward, result.rows[0].District);
                 importType('#page-detail #frm-update', result.rows[0].Type);
                 importFurniture('#page-detail #frm-update', result.rows[0].Furniture);
 
