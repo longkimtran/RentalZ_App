@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='Content-Security-Policy'
+        content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
+    <meta name='format-detection' content='telephone=no'>
+    <meta name='msapplication-tap-highlight' content='no'>
+    <meta name='viewport' content='initial-scale=1, width=device-width, viewport-fit=cover'>
+    <meta name='color-scheme' content='light dark'>
+
+    <link rel='stylesheet' href='css/jquery.mobile-1.4.5.min.css'>
+    <link rel='stylesheet' href='css/index.css'>
+    <link rel='stylesheet' href='css/drop_file.css'>
+    <link rel='stylesheet' href='css/background.css'>
+
+    <title>RentalZ</title>
+</head>
+
+<body>
+
+    <!-- PAGE 'HOME' -->
+    <div data-role='page' id='page-home'>
+        <div data-role='header' data-position='fixed'>
+            <i>
+                <h1 style="font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; font-size: 30px;">The
+                    RentalZ Booking Hotel</h1>
+            </i>
+        </div>
+
+        <div data-role='main' class='ui-content'>
+            <div id="bg-image">
+                <div data-role='main' class='ui-content'>
+                    <h1 style="font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; font-size: 60px;">
+                        Welcome to our service</h1>
+                </div>
+
+                <center>
+                    <P style="font-size:larger; font-weight: 1000;">Here we have all the rooms in the whole territory of
+                        Vietnam.
+                        If people have needs, you can click the "Create" button or the "Plus" sign at the bottom of the
+                        screen to register.
+                        If you have any questions, please go to the "about" section to be able to contact us.
+                        Thank you!</P>
+                </center>
+
+                <center>
+                    <table>
+                        <tr>
+                            <td>
+                                <a href="#page-create" data-transition="none"
+                                    class="ui-btn ui-alt-icon ui-icon-plus ui-nodisc-icon ui-btn-icon-top ui">Create</a>
+                            </td>
+
+                            <td>
+                                <a href="#page-list" data-transition="none"
+                                    class="ui-btn ui-alt-icon ui-icon-grid ui-nodisc-icon ui-btn-icon-top">List-page</a>
+                            </td>
+
+                            <td>
+                                <a href="#page-about" data-transition="none"
+                                    class="ui-btn ui-alt-icon ui-icon-info ui-nodisc-icon ui-btn-icon-top">About</a>
+                            </td>
+                        </tr>
+                    </table>
+                </center>
+
+                <center><img src="img/bds.jpg" width="50%"></center>
+
+            </div>
+        </div>
+        <div data-role='footer' data-position='fixed'>
+            <div data-role='navbar'>
+                <ul>
+                    <li>
+                        <a style='width: 100%; height: 50px;' href='#page-home' data-transition='none'
+                            class='ui-btn ui-btn-b ui-icon-home ui-btn-icon-notext ui-nodisc-icon ui-state-persist ui-btn-active'>Home</a>
+                    </li>
+
+                    <li>
+                        <a style='width: 100%; height: 50px;' href='#page-create' data-transition='none'
+                            class='ui-btn ui-btn-b ui-icon-plus ui-btn-icon-notext ui-nodisc-icon'>Create Account</a>
+                    </li>
+
+                    <li>
+                        <a style='width: 100%; height: 50px;' href='#page-list' data-transition='none'
+                            class='ui-btn ui-btn-b ui-icon-grid ui-btn-icon-notext ui-nodisc-icon'>Account List</a>
+                    </li>
+
+                    <li>
+                        <a style='width: 100%; height: 50px;' href='#page-about' data-transition='none'
+                            class='ui-btn ui-btn-b ui-icon-info ui-btn-icon-notext ui-nodisc-icon'>About</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 'CREATE NEW Customer' -->
+    <div data-role='page' id='page-create'>
+        <div data-role='header' data-position='fixed'>
+            <i>
+                <h1 style="font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; font-size: 30px;">The
+                    RentalZ Booking Hotel</h1>
+            </i>
+        </div>
+
+        <div data-role='main' class='ui-content'>
+            <div id="bg-image2">
+                <h1 style="font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;">ROOM REGISTRATION
+                </h1>
+
+                <span id="error" style="color: red;"></span>
+
+                <!--Registration Form-->
+                <form id='frm-register'>
+                    <label class="small-text"><b>Customer Name</b></label>
+                    <input type="text" placeholder="Enter property name here..." id="username" data-clear-btn="true"
+                        required>
+
+                    <label class="small-text"><b>Address</b></label>
+                    <input type="text" placeholder="Enter street number & name here..." id="street"
+                        data-clear-btn="true" required>
+
+                    <fieldset data-role="controlgroup">
+                        <select id="city" required></select>
+                        <select id="district" required></select>
+                        <select id="ward" required></select>
+                    </fieldset>
+
+
+                    <fieldset class="ui-grid-a" style="overflow: visible;">
+                        <div class="ui-block-a" style="padding-right: 5px;">
+                            <label class="small-text"><b>Type</b></label>
+                            <select name="" id="type" required></select>
+                        </div>
+
+                        <div class="ui-block-b" style="padding-left: 5px;">
+                            <label class="small-text"><b>Furniture</b></label>
+                            <select name="" id="furniture" required>
+                            </select>
+                        </div>
+                    </fieldset>
+
+
+                    <label class="small-text"><b>Number of Bedrooms</b></label>
+                    <input type="number" id="bedroom" data-clear-btn="true" placeholder="Enter bedrooms no. here..."
+                        required min="0">
+
+                    <label class="small-text"><b>Monthly Price</b></label>
+                    <input type="number" id="price" data-clear-btn="true" placeholder="Enter monthly price here..."
+                        required min="0">
+
+                    <label class="small-text"><b>Reporter</b></label>
+                    <input type="text" id="reporter" data-clear-btn="true" placeholder="Enter name of reporter here..."
+                        required>
+
+                    <br>
+                    <br>
+
+                    <i style="font-size: 20px;"> >>>Note: <u>Please fill out the information
+                            completely and check the information carefully. Thank you !</u>
+                    </i>
+
+                    <br>
+
+                    <button type='submit'>Book Now!</button>
+                </form>
+                <!-- Confirm Registration -->
+                <form data-role="popup" id="frm-confirm" class="ui-content">
+                    <div class="ui-field-contain">
+                        <label for="id">Username</label>
+                        <input type="text" id="username" readonly>
+                    </div>
+
+                    <div class="ui-field-contain">
+                        <label for="name">Address</label>
+                        <input type="text" id="street" readonly>
+                    </div>
+
+                    <div class="ui-field-contain">
+                        <label for="name">Type</label>
+                        <input type="text" id="type" readonly>
+                    </div>
+
+                    <div class="ui-field-contain">
+                        <label for="name">Furniture</label>
+                        <input type="text" id="furniture" readonly>
+                    </div>
+
+                    <div class="ui-field-contain">
+                        <label for="name">Bedroom</label>
+                        <input type="text" id="bedroom" readonly>
+                    </div>
+
+                    <div class="ui-field-contain">
+                        <label for="name">Price</label>
+                        <input type="text" id="price" readonly>
+                    </div>
+
+                    <div class="ui-field-contain">
+                        <label for="name">Reporter</label>
+                        <input type="text" id="reporter" readonly>
+                    </div>
+
+                    <div class="ui-grid-a">
+                        <div class="ui-block-a">
+                            <a class="ui-btn ui-corner-all" data-rel="back">Cancel</a>
+                        </div>
+
+                        <div class="ui-block-b">
+                            <input type="submit" value="Confirm">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div data-role='footer' data-position='fixed'>
+            <div data-role='navbar'>
+                <ul>
+                    <li>
+                        <a style='width: 100%; height: 50px;' href='#page-home' data-transition='none'
+                            class='ui-btn ui-btn-b ui-icon-home ui-btn-icon-notext ui-nodisc-icon'>Home</a>
+                    </li>
+
+                    <li>
+                        <a style='width: 100%; height: 50px;' href='#page-create' data-transition='none'
+                            class='ui-btn ui-btn-b ui-icon-plus ui-btn-icon-notext ui-nodisc-icon ui-state-persist ui-btn-active'>Create
+                            Account</a>
+                    </li>
+
+                    <li>
+                        <a style='width: 100%; height: 50px;' href='#page-list' data-transition='none'
+                            class='ui-btn ui-btn-b ui-icon-grid ui-btn-icon-notext ui-nodisc-icon'>Account List</a>
+                    </li>
+
+                    <li>
+                        <a style='width: 100%; height: 50px;' href='#page-about' data-transition='none'
+                            class='ui-btn ui-btn-b ui-icon-info ui-btn-icon-notext ui-nodisc-icon'>About</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 'ACCOUNT LIST' -->
+    <div data-role='page' id='page-list'>
+        <div data-role='header' data-position='fixed'>
+            <i>
+                <h1 style="font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; font-size: 30px;">The
+                    RentalZ Booking Hotel</h1>
+            </i>
+        </div>
+
+        <div data-role='main'>
+            <div id="bg-image2">
+                <!--Display Account List-->
+                <div data-role='main' class='ui-content'>
+                    <h1 style="font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;">Customer List</h1>
+                </div>
+                <table>
+                    <tr>
+                        <td style="width: 100%; padding: 0px;">
+        
+                        </td>
+        
+                        <td style="padding: 0px;">
+                            <a class="ui-btn ui-btn-icon-notext ui-icon-bullets " id="btn-filter-popup"> Advanced search <a>
+                        </td>
+        
+                        <td style="padding: 0px;">
+                            <button class="ui-btn ui-icon-refresh ui-btn-icon-notext ui-nodisc-icon" id="btn-reset"></button>
+                        </td>
+                    </tr>
+                </table>
+        
+                <form data-role="popup" id="frm-search" class="ui-content" style="width: 80vw;" data-overlay-theme="b">
+                    <center>
+                        <h3 style="font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; font-size: 25px;">
+                            Search Form</h3>
+                    </center>
+                    <input type="text" id="username" placeholder="Property Name" data-clear-btn="true">
+                    <input type="number" id="bedroom" data-clear-btn="true" placeholder="Number of Bedrooms">
+                    <input type="text" id="reporter" data-clear-btn="true" placeholder="Reporter">
+                    <input type="text" id="street" placeholder="Street" data-clear-btn="true">
+        
+                    <fieldset data-role="controlgroup">
+                        <select id="city"></select>
+                        <select id="district"></select>
+                        <select id="ward"></select>
+                    </fieldset>
+        
+                    <fieldset data-role="controlgroup">
+                        <select id="type"></select>
+                        <select id="furniture"></select>
+                    </fieldset>
+        
+                    <label class="small-text" style="text-align: center;">Monthly Price</label>
+                    <div data-role="rangeslider" data-mini="true">
+                        <input type="range" id="price-min" min="0" max="1000000000" value="0">
+                        <input type="range" id="price-max" min="0" max="1000000000" value="1000000000">
+                    </div>
+        
+                    <button type="submit">Search</button>
+                </form>
+        
+                <ul id='list-account' data-role='listview' class='ui-nodisc-icon ui-alt-icon'></ul>
+            </div>
+        </div>
+
+        <div data-role='footer' data-position='fixed'>
+            <div data-role='navbar'>
+                <ul>
+                    <li>
+                        <a style='width: 100%; height: 50px;' href='#page-home' data-transition='none'
+                            class='ui-btn ui-btn-b ui-icon-home ui-btn-icon-notext ui-nodisc-icon'>Home</a>
+                    </li>
+
+                    <li>
+                        <a style='width: 100%; height: 50px;' href='#page-create' data-transition='none'
+                            class='ui-btn ui-btn-b ui-icon-plus ui-btn-icon-notext ui-nodisc-icon'>Create Account</a>
+                    </li>
+
+                    <li>
+                        <a style='width: 100%; height: 50px;' href='#page-list' data-transition='none'
+                            class='ui-btn ui-btn-b ui-icon-grid ui-btn-icon-notext ui-nodisc-icon ui-state-persist ui-btn-active'>Account
+                            List</a>
+                    </li>
+
+                    <li>
+                        <a style='width: 100%; height: 50px;' href='#page-about' data-transition='none'
+                            class='ui-btn ui-btn-b ui-icon-info ui-btn-icon-notext ui-nodisc-icon'>About</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 'ACCOUNT DETAILS' -->
+    <div data-role='page' id='page-detail'>
+        <div data-role='main' class='ui-content'>
+            <h1 style="font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;">Customer Details</h1>
+        </div>
+
+        <div data-role='header' data-position='fixed'>
+            <div style='margin-left: 5px;'>
+                <a style='border: none; background-color: transparent;' href='#page-list' data-transition='none'
+                    class='ui-btn ui-icon-carat-l ui-btn-icon-notext ui-nodisc-icon ui-alt-icon'>Back to list</a>
+            </div>
+        </div>
+
+        <div data-role='main'>
+            <center><img src="img/background-dep.jpg" width="100%" alt=""></center>
+            <center>
+                <td colspan='2'>
+                    <div class="drop-zone">
+                        <span class="drop-zone__prompt">Upload your avatar in here!!!</span>
+                        <input type="file" name="myFile" id="drop-zone__input">
+                    </div>
+                </td>
+            </center><br>
+
+            <table style="font-size: 17px; ">
+                <tr>
+                    <th><img src="img/man_person.png" height="50px"></th>
+                    <td id='username'>: </td>
+                </tr>
+
+                <tr>
+                    <th>Address:</th>
+                    <td id='ward'></td>
+                </tr><br>
+
+                <tr>
+                    <th>Type: </th>
+                    <td id='type'></td>
+                </tr>
+
+                <tr>
+                    <th>Furniture: </th>
+                    <td id='furniture'></td>
+                </tr>
+
+                <tr>
+                    <th>Bedroom: </th>
+                    <td id='bedroom'></td>
+                </tr>
+
+                <tr>
+                    <th>Price: </th>
+                    <td id='price'></td>
+                </tr>
+
+                <tr>
+                    <th>Reporter: </th>
+                    <td id='reporter'></td>
+                </tr>
+
+                <tr>
+                    <th>Date: </th>
+                    <td id="date"></td>
+                </tr>
+            </table>
+            <br>
+
+            <label class="small-text" style="text-align: center;"><b>Note List</b></label>
+            <a href='#popup-comment' data-rel='popup' data-position-to='window' data-transition='none'
+                class='ui-btn ui-btn-b  ui-icon-comment ui-btn-icon-notext ui-corner-all ui-nodisc-icon'>Note</a>
+
+            <ul data-role="listview" id="list-comment"></ul>
+
+            <div data-role='popup' id='delete-comment-confirm'>
+                <div data-role='header'>
+                    <h1>Delete Note?</h1>
+                </div>
+
+                <div data-role='main' class='ui-content'>
+                    <p>Are you sure you want to delete this note?</p>
+                    <p>This action cannot be undone.</p>
+                </div>
+
+                <fieldset class='ui-grid-a'>
+                    <div class='ui-block-a'>
+                        <a class='ui-btn' data-rel='back'>Cancel</a>
+                    </div>
+
+                    <div class='ui-block-b'>
+                        <a class='ui-btn ui-btn-b' id='btn-delete-comment'>Delete</a>
+                    </div>
+                </fieldset>
+            </div>
+
+            <div data-role='popup' id='popup-comment'>
+                <div data-role='header'>
+                    <h1>Note</h1>
+                </div>
+
+                <div data-role='main' class='ui-content'>
+                    <textarea placeholder="Please enter your note here....!" id="txt-comment"></textarea>
+                </div>
+
+                <fieldset class='ui-grid-a'>
+                    <div class='ui-block-a'>
+                        <a class='ui-btn' data-rel='back'>Cancel</a>
+                    </div>
+
+                    <div class='ui-block-b'>
+                        <a class='ui-btn ui-btn-b' id='btn-comment'>Save</a>
+                    </div>
+                </fieldset>
+            </div>
+
+            <form id="frm-update" data-role="popup" class="ui-content" data-overlay-theme="b">
+
+                <label class="small-text"><b>Customer Name</b></label>
+                <input type="text" id="username" data-clear-btn="true" required>
+
+                <label class="small-text"><b>Address</b></label>
+                <input type="text" id="street" data-clear-btn="true" required>
+
+                <fieldset data-role="controlgroup">
+                    <select id="city" required></select>
+                    <select id="district" required></select>
+                    <select id="ward" required></select>
+                </fieldset>
+
+                <label class="small-text"><b>Type</b></label>
+                <select name="" id="type" required>
+                </select>
+
+                <label class="small-text"><b>Furniture</b></label>
+                <select name="" id="furniture" required>
+                </select>
+
+                <fieldset class="ui-grid-a" style="overflow: visible;">
+                    <div class="ui-block-a" style="padding-right: 5px;">
+                        <label class="small-text"><b>Bedroom No.</b></label>
+                        <input type="number" id="bedroom" data-clear-btn="true" required value="7">
+                    </div>
+
+                    <div class="ui-block-b" style="padding-left: 5px;">
+                        <label class="small-text"><b>Monthly Price</b></label>
+                        <input type="number" id="price" data-clear-btn="true" required value="50000000">
+                    </div>
+                </fieldset>
+
+                <label class="small-text"><b>Reporter</b></label>
+                <input type="text" id="reporter" data-clear-btn="true" required>
+
+                <div class="ui-grid-a">
+                    <div class="ui-block-a" style="padding: 5px;">
+                        <button type="button" id="cancel">Cancel</button>
+                    </div>
+
+                    <div class="ui-block-b" style="padding: 5px;">
+                        <button type="submit" class="green">Update</button>
+                    </div>
+                </div>
+            </form>
+
+            <fieldset class='ui-grid-a' style='margin-top: 25px;'>
+                <div class='ui-block-a'>
+                    <a href='#frm-update' data-rel="popup" data-position-to="window" class='ui-btn'
+                        id='btn-update-popup'>Update</a>
+                </div>
+
+                <div class='ui-block-b'>
+                    <a href='#delete-account-confirm' data-rel='popup' data-position-to='window' data-transition='none'
+                        class='ui-btn ui-btn-b' id="btn-delete-confirm">Delete Infomation</a>
+                </div>
+            </fieldset>
+
+            <div data-role='popup' id='delete-account-confirm'>
+                <div data-role='header'>
+                    <h1>Delete Page?</h1>
+                </div>
+
+                <div data-role='main' class='ui-content'>
+                    <p>Are you sure you want to delete this account?</p>
+                    <p>This action cannot be undone.</p>
+                </div>
+
+                <fieldset class='ui-grid-a'>
+                    <div class='ui-block-a'>
+                        <a class='ui-btn' data-rel='back'>Cancel</a>
+                    </div>
+
+                    <div class='ui-block-b'>
+                        <a class='ui-btn ui-btn-b' id='btn-delete'>Delete</a>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+
+        <div data-role='footer' data-position='fixed'>
+            <div data-role='navbar'>
+                <ul>
+                    <li>
+                        <a style='width: 100%; height: 50px;' href='#page-home' data-transition='none'
+                            class='ui-btn ui-btn-b ui-icon-home ui-btn-icon-notext ui-nodisc-icon'>Home</a>
+                    </li>
+
+                    <li>
+                        <a style='width: 100%; height: 50px;' href='#page-create' data-transition='none'
+                            class='ui-btn ui-btn-b ui-icon-plus ui-btn-icon-notext ui-nodisc-icon'>Create Account</a>
+                    </li>
+
+                    <li>
+                        <a style='width: 100%; height: 50px;' href='#page-list' data-transition='none'
+                            class='ui-btn ui-btn-b ui-icon-grid ui-btn-icon-notext ui-nodisc-icon ui-state-persist ui-btn-active'>Account
+                            List</a>
+                    </li>
+
+                    <li>
+                        <a style='width: 100%; height: 50px;' href='#page-about' data-transition='none'
+                            class='ui-btn ui-btn-b ui-icon-info ui-btn-icon-notext ui-nodisc-icon'>About</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- PAGE 'ABOUT' -->
+    <div data-role='page' id='page-about'>
+        <div data-role='header' data-position='fixed'>
+            <i>
+                <h1 style="font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; font-size: 30px;">The
+                    RentalZ Booking Hotel</h1>
+            </i>
+        </div>
+
+        <div data-role='main' class='ui-content' style="text-align: center;">
+            <div id="bg-image1">
+                <h1 style="font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;">ABOUT US</h1>
+                <img width="200px" height="250px" style="margin-bottom: 25px;" src="img/15659.png" alt="About us">
+
+                <P style="font-size:larger;">Hello there, you just saw our application.
+                    I know this app look very simple but this is our determination to be able to create this
+                    application.
+                    Therefore, if you have any questions or want us to develop further, please contact us in the section
+                    below.
+                    Thank you!</P>
+
+                <div></div>
+
+                <h2>Contact</h2>
+                <p style="margin-bottom: 7px;">Author</p>
+                <strong><em>Tran Huu Kim Long</em></strong>
+                <p style="margin-bottom: 7px; margin-top: 25px;">Email Address</p>
+                <strong><em><a href="mailto:longthkgcs18852@fpt.edu.vn">longthkgcs18852@fpt.edu.vn</a></em></strong>
+                <p style="margin-bottom: 7px; margin-top: 25px;">Or</p>
+                <strong><em><a href="mailto:tranhuukimlong@gmail.com">tranhuukimlong@gmail.com</a></em></strong>
+                <p style="margin-bottom: 7px; margin-top: 25px;">Phone Number</p>
+                <strong><em><a href="tel:+84917515853">(+84) 917 515 853</a></em></strong>
+                <br>
+                <br>
+
+                <p style="margin-top: 5px;"><em>Copyright &#169; 2021 LONG TRAN. All rights reserved.</em></p>
+            </div>
+        </div>
+
+        <div data-role='footer' data-position='fixed'>
+            <div data-role='navbar'>
+                <ul>
+                    <li>
+                        <a style='width: 100%; height: 50px;' href='#page-home' data-transition='none'
+                            class='ui-btn ui-btn-b ui-icon-home ui-btn-icon-notext ui-nodisc-icon'>Home</a>
+                    </li>
+
+                    <li>
+                        <a style='width: 100%; height: 50px;' href='#page-create' data-transition='none'
+                            class='ui-btn ui-btn-b ui-icon-plus ui-btn-icon-notext ui-nodisc-icon'>Create Account</a>
+                    </li>
+
+                    <li>
+                        <a style='width: 100%; height: 50px;' href='#page-list' data-transition='none'
+                            class='ui-btn ui-btn-b ui-icon-grid ui-btn-icon-notext ui-nodisc-icon'>Account List</a>
+                    </li>
+
+                    <li>
+                        <a style='width: 100%; height: 50px;' href='#page-about' data-transition='none'
+                            class='ui-btn ui-btn-b ui-icon-info ui-btn-icon-notext ui-nodisc-icon ui-state-persist ui-btn-active'>About</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+    <script src='js/jquery.js'></script>
+    <script src='js/jquery.mobile-1.4.5.min.js'></script>
+    <script src='js/address.js'></script>
+    <script src='js/index.js'></script>
+    <script src='js/drop_file.js'></script>
+
+</body>
+
+</html>
