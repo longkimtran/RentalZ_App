@@ -189,7 +189,7 @@ function showList() {
                                     <h3>Customer: ${account.Username}</h3>
                                     <p>City:${account.Street}, ${account.Ward}, ${account.District}, ${account.City}</p>
                                     <p>Bedroom: ${account.Bedroom}</p>
-                                    <p>Price: ${account.Price}</p>
+                                    <p>Price: ${account.Price} VND/month</p>
                                 </a></li>`;
             }
             listAccount += `</ul>`;
@@ -692,7 +692,7 @@ function displayList(list) {
             <h3>Customer: ${account.Username}</h3>
             <p>City:${account.Street}, ${account.Ward}, ${account.District}, ${account.City}</p>
             <p>Bedroom: ${account.Bedroom}</p>
-            <p>Price: ${account.Price}</p>
+            <p>Price: ${account.Price} VND/month</p>
         </a></li>`;
     }
     accountList += `</ul>`;
