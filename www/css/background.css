@@ -1,0 +1,40 @@
+
+#bg-image {
+    background-image: url("../img/pexels-photo-917494.jpeg");
+    background-color: #cccccc;
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    backdrop-filter: blur(10px);
+}
+
+#bg-image1 {
+    background-image: url("../img/background-dep-5.png");
+    background-color: #cccccc;
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    backdrop-filter: blur(10px);
+}
+
+#bg-image2 {
+    background-image: url("../img/background-dep-5.png");
+    background-color: #cccccc;
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    backdrop-filter: blur(10px);
+}
+
+#btn-filter-popup{
+    background-color: black;
+}
+#btn-reset{
+    background-color: black;
+}

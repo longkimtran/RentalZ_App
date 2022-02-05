@@ -1,0 +1,11 @@
+{
+  "background_color": "#FFF",
+  "display": "standalone",
+  "name": "RentalZ",
+  "short_name": "RentalZ",
+  "version": "vn.edu.greenwich.database",
+  "description": "Tower Searching.",
+  "author": "Long Tran",
+  "icons": [],
+  "start_url": "index.html"
+}
